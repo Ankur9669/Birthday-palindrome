@@ -167,22 +167,23 @@ function nextPalindromeDate(date)
     
   return {day : day , month : month ,year :year};
 }
-function previousPalindromeDate(date)
-{
-    var counter1 = 0;
-    var previousDates = previousDate(date);
-    while(1){
-      counter1++;
-    var palindrome = checkAllDateFormates(previousDates);
-    if(palindrome)
-    {
-      break;
-    }
-      previousDates = previousDate(previousDates);
+// function previousPalindromeDate(date)
+// {
+//     var counter1 = 0;
+//     var previousDates = previousDate(date);
+//     while(1){
+//       counter1++;
+//     var palindrome = checkAllDateFormates(previousDates);
+//     if(palindrome)
+//     {
+//       break;
+//     }
+//       previousDates = previousDate(previousDates);
       
-    }
-    return [counter1 , previousDates];
-  }
+//     }
+//     return [counter1 , previousDates];
+// }
+  
 
   btn.addEventListener("click" ,() =>{
     var Str = dateString.value;
@@ -190,15 +191,15 @@ function previousPalindromeDate(date)
     if(Str !== "")
     {
           listofdates = Str.split("-");
+          //console.log(listofdates);
           var date = 
           {
             day : Number(listofdates[2]),
             month: Number(listofdates[1]),
             year: Number(listofdates[0])
-
           };
+          console.log(date);
           var isPalindrome = checkAllDateFormates(date);
-
             if(isPalindrome)
             {
               outputDiv.style.display = "block";
@@ -206,29 +207,18 @@ function previousPalindromeDate(date)
 
             }else{
               let [count,nextDates] = nextPalindromeDate(date);
-              let [counter1,previousDates] = previousPalindromeDate(date);
-              if(count< counter1)
-              {
+              //let [counter1,previousDates] = previousPalindromeDate(date);
+              
                 outputDiv.style.display = "block";
+                outputDiv.innerText = `The next palindrome date is ${nextDates["day"]}-${nextDates["month"]}-${nextDates["year"]}. Which is ${count} day away😔.`;
 
-                    if(count === 1)
-                    {
-                        outputDiv.innerText = `The next palindrome date is ${nextDates["day"]}-${nextDates["month"]}-${nextDates["year"]}. Which is ${count} day away😔.`;
-                    }else
-                    {
-                        outputDiv.innerText = `The next palindrome date is ${nextDates["day"]}-${nextDates["month"]}-${nextDates["year"]}. Which is ${counter1} days away😔.`;
-                    }
-              }else if(counter1<count){
-                    outputDivTwo.style.display = "block";
-
-                    if(counter1 === 1)
-                    {
-                        outputDivTwo.innerText = `The previous palindrome date was ${previousDates["day"]}-${previousDates["month"]}-${previousDates["year"]}, you missed by ${counter1} day😔.`;
-                    }else
-                    {
-                        outputDivTwo.innerText = `The previous palindrome date was ${previousDates["day"]}-${previousDates["month"]}-${previousDates["year"]}, you missed by ${count} days😔.`;
-                    }
-                }
+                    // if(count === 1)
+                    // {
+                    //     outputDiv.innerText = `The next palindrome date is ${nextDates["day"]}-${nextDates["month"]}-${nextDates["year"]}. Which is ${count} day away😔.`;
+                    // }else
+                    // {
+                    //     outputDiv.innerText = `The next palindrome date is ${nextDates["day"]}-${nextDates["month"]}-${nextDates["year"]}. Which is ${counter1} days away😔.`;
+                    // }
               }
             
     }else{
